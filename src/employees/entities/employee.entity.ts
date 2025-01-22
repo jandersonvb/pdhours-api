@@ -1,7 +1,8 @@
 import { Squad } from "src/squads/entities/squad.entity";
 
-import { Column, JoinColumn, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
 
+@Entity()
 export class Employee {
   @PrimaryGeneratedColumn()
   id: number;
