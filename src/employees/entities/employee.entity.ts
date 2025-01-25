@@ -1,10 +1,11 @@
 import { Squad } from "src/squads/entities/squad.entity";
+import { Report } from "src/reports/entities/report.entity";
 
 import { Column, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
 
-@Entity()
+@Entity('employees')
 export class Employee {
-  @PrimaryGeneratedColumn()
+  @PrimaryGeneratedColumn('uuid')
   id: number;
 
   @Column()
@@ -16,4 +17,8 @@ export class Employee {
   @ManyToOne(() => Squad, squad => squad.id)
   @JoinColumn()
   squad: Squad;
+
+  @ManyToOne(() => Report, report => report.id)
+  @JoinColumn()
+  report: Report;
 }
