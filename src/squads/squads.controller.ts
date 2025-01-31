@@ -4,9 +4,10 @@ import { CreateSquadDto } from './dto/create-squad.dto';
 import { UpdateSquadDto } from './dto/update-squad.dto';
 import { SquadReportDto } from './dto/squad-report.dto';
 
-@Controller('/squads')
+@Controller('/squad')
 export class SquadsController {
   constructor(private readonly squadsService: SquadsService) { }
+  
   @Get('/:id/hours-by-member')
   async getHoursByMember(@Param() params: Pick<SquadReportDto, 'squadId'>, @Query() query: Omit<SquadReportDto, 'squadId'>): Promise<any[]> {
     return await this.squadsService.getHoursByMember(params.squadId, query.startDate, query.endDate);
@@ -21,7 +22,7 @@ export class SquadsController {
   async getAverageHours(@Param() params: Pick<SquadReportDto, 'squadId'>, @Query() query: Omit<SquadReportDto, 'squadId'>): Promise<number> {
     return await this.squadsService.getAverageHours(params.squadId, query.startDate, query.endDate);
   }
-  @Post('/squad')
+  @Post()
   create(@Body() createSquadDto: CreateSquadDto) {
     return this.squadsService.create(createSquadDto);
   }

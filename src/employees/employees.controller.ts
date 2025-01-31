@@ -3,11 +3,11 @@ import { EmployeesService } from './employees.service';
 import { CreateEmployeeDto } from './dto/create-employee.dto';
 import { UpdateEmployeeDto } from './dto/update-employee.dto';
 
-@Controller('employees')
+@Controller('employee')
 export class EmployeesController {
   constructor(private readonly employeesService: EmployeesService) {}
 
-  @Post('/employee')
+  @Post()
   create(@Body() createEmployeeDto: CreateEmployeeDto) {
     return this.employeesService.create(createEmployeeDto);
   }

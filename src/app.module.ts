@@ -11,16 +11,17 @@ import { ReportsModule } from './reports/reports.module';
   imports: [
     ConfigModule.forRoot({
       isGlobal: true, // Torna as variáveis de ambiente acessíveis globalmente
+      envFilePath: '.env', // Especifica o caminho do arquivo .env
     }),
     TypeOrmModule.forRootAsync({
       imports: [ConfigModule], // Importa o ConfigModule
       useFactory: (configService: ConfigService) => ({
         type: 'mysql',
-        host: configService.get<string>('DB_HOST'),
-        port: configService.get<number>('DB_PORT'),
-        username: configService.get<string>('DB_USERNAME'),
-        password: configService.get<string>('DB_PASSWORD'),
-        database: configService.get<string>('DB_NAME'),
+        host: configService.get<string>('DB_HOST') || 'localhost',
+        port: configService.get<number>('DB_PORT') || 3306,
+        username: configService.get<string>('DB_USERNAME') || 'root',
+        password: configService.get<string>('DB_PASSWORD') || 'root',
+        database: configService.get<string>('DB_NAME') || 'nest',
         entities: [__dirname + '/**/*.entity{.ts,.js}'],
         synchronize: true,
         logging: true

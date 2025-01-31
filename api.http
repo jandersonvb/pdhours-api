@@ -1,0 +1,80 @@
+### Testar conexão com o servidor
+GET http://localhost:3000/
+
+### Criar um funcionário
+POST http://localhost:3000/employee
+Content-Type: application/json
+
+{
+  "name": "Théo José",
+  "estimatedHours": 12,
+  "squadId": 2
+}
+
+### Listar todos os funcionários
+GET http://localhost:3000/employee
+
+### Listar um funcionário
+GET http://localhost:3000/employee/1
+
+### Atualizar um funcionário
+PUT http://localhost:3000/employee/1
+
+{
+  "name": "Théo José",
+  "estimatedHours": 12,
+  "squadId": 2
+}
+
+### Deletar um funcionário
+DELETE http://localhost:3000/employee/1
+
+### Criar um squad
+POST http://localhost:3000/squad
+Content-Type: application/json
+
+{
+  "name": "Squad 1",
+  "description": "Squad 1 description"
+}
+
+### Listar todos os squads
+GET http://localhost:3000/squad
+
+### Listar um squad
+GET http://localhost:3000/squad/1
+
+### Atualizar um squad
+PUT http://localhost:3000/squad/1
+
+{
+  "name": "Squad 1"
+}
+
+### Deletar um squad
+DELETE http://localhost:3000/squad/1
+
+
+###  Reportar horas trabalhadas
+
+POST http://localhost:3000/employee/report
+Content-Type: application/json
+
+{
+  "employeeId": 1,
+  "hours": 8,
+  "date": "2021-09-01"
+}
+
+###  Listar horas trabalhadas
+
+GET http://localhost:3000/employee/report/1
+
+###  Listar horas trabalhadas por período
+GET http://localhost:3000/employee/report/1?startDate=2021-09-01&endDate=2021-09-30
+
+```
+
+
+
+
