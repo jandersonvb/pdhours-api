@@ -34,8 +34,8 @@ POST http://localhost:3000/squad
 Content-Type: application/json
 
 {
-  "name": "Squad 1",
-  "description": "Squad 1 description"
+  "name": "Squad 3",
+  "description": "Squad 3 description"
 }
 
 ### Listar todos os squads

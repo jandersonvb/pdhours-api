@@ -14,4 +14,7 @@ export class CreateReportDto {
 
     @CreateDateColumn()
     createdAt: Date;
+
+    @CreateDateColumn()
+    updatedAt: Date;
 }

@@ -11,7 +11,7 @@ export class Employee {
   @Column()
   name: string;
 
-  @Column({ type: 'int', default: 8 })
+  @Column({ type: 'int', default: 8  })
   estimatedHours: number;
 
   @ManyToOne(() => Squad, squad => squad.id)
