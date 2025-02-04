@@ -6,9 +6,9 @@ POST http://localhost:3000/employee
 Content-Type: application/json
 
 {
-  "name": "Théo José",
+  "name": "Janderson Vilas Boas",
   "estimatedHours": 12,
-  "squadId": 2
+  "squadId": 1
 }
 
 ### Listar todos os funcionários
