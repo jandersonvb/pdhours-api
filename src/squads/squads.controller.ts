@@ -7,7 +7,7 @@ import { SquadReportDto } from './dto/squad-report.dto';
 @Controller('/squad')
 export class SquadsController {
   constructor(private readonly squadsService: SquadsService) { }
-  
+
   @Get('/:id/hours-by-member')
   async getHoursByMember(@Param() params: Pick<SquadReportDto, 'squadId'>, @Query() query: Omit<SquadReportDto, 'squadId'>): Promise<any[]> {
     return await this.squadsService.getHoursByMember(params.squadId, query.startDate, query.endDate);
@@ -33,9 +33,12 @@ export class SquadsController {
   }
 
   @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.squadsService.findOne(+id);
+  async findOne(@Param('id') id: number) {
+    return this.squadsService.findOne(+id, {
+      relations: ['employees', 'employees.reports'], // Carrega membros e seus relatórios
+    });
   }
+
 
   @Patch(':id')
   update(@Param('id') id: string, @Body() updateSquadDto: UpdateSquadDto) {

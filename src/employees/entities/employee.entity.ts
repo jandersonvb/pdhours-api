@@ -14,8 +14,8 @@ export class Employee {
   @Column({ type: 'int', default: 8  })
   estimatedHours: number;
 
-  @ManyToOne(() => Squad, squad => squad.id)
-  @JoinColumn()
+  @ManyToOne(() => Squad, (squad) => squad.employees)
+  @JoinColumn({ name: 'squadId' }) // Define explicitamente o nome da coluna de chave estrangeira
   squad: Squad;
 
   @OneToMany(() => Report, report => report.employee)

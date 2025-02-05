@@ -7,8 +7,7 @@ Content-Type: application/json
 
 {
   "name": "Janderson Vilas Boas",
-  "estimatedHours": 12,
-  "squadId": 1
+  "estimatedHours": 12 
 }
 
 ### Listar todos os funcionários
@@ -52,26 +51,39 @@ PUT http://localhost:3000/squad/1
 }
 
 ### Deletar um squad
-DELETE http://localhost:3000/squad/1
+DELETE http://localhost:3000/squad/14
 
 
 ###  Reportar horas trabalhadas
 
-POST http://localhost:3000/employee/report
+POST http://localhost:3000/report
 Content-Type: application/json
 
 {
   "employeeId": 1,
-  "hours": 8,
-  "date": "2021-09-01"
+  "description": "Trabalho de backend",
+  "spentHours": 8
 }
+
+### Listar horas trabalhadas
+GET http://localhost:3000/squad/5/report
+
+###  Procurar por squad
+GET http://localhost:3000/squad/2/report?employeeId=1
+
+
 
 ###  Listar horas trabalhadas
 
-GET http://localhost:3000/employee/report/1
+GET http://localhost:3000/report/1
 
 ###  Listar horas trabalhadas por período
-GET http://localhost:3000/employee/report/1?startDate=2021-09-01&endDate=2021-09-30
+GET http://localhost:3000/report/1?startDate=2021-09-01&endDate=2021-09-30
+
+
+### Listar horas trabalhadas por período
+GET http://localhost:3000/report/1?startDate=2021-09-01&endDate=2021-09-30
+
 
 ```
 

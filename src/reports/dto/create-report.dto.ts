@@ -1,4 +1,4 @@
-import { IsInt, IsString, MaxLength } from "class-validator";
+import { IsInt, IsNotEmpty, IsString, MaxLength } from "class-validator";
 import { CreateDateColumn } from "typeorm";
 
 export class CreateReportDto {
@@ -10,6 +10,7 @@ export class CreateReportDto {
     employeeId: number;
 
     @IsInt()
+    @IsNotEmpty()
     spentHours: number;
 
     @CreateDateColumn()

@@ -42,7 +42,14 @@ export class ReportsService {
 
   async remove(id: number): Promise<void> {
     const report = await this.findOne(id);
-    
+
     await this.reportRepository.remove(report);
+  }
+
+  async findBySquad(squadId: number) {
+    return this.reportRepository.find({
+      where: { squad: { id: squadId } },
+      relations: ['employee'],
+    });
   }
 }

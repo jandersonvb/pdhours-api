@@ -1,6 +1,6 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
+import { FindManyOptions, Repository } from 'typeorm';
 import { CreateEmployeeDto } from './dto/create-employee.dto';
 import { UpdateEmployeeDto } from './dto/update-employee.dto';
 import { Employee } from './entities/employee.entity';
@@ -18,8 +18,8 @@ export class EmployeesService {
     return await this.employeeRepository.save(newEmployee);
   }
 
-  async findAll(): Promise<Employee[]> {
-    return await this.employeeRepository.find();
+  async findAll(options?: FindManyOptions<Employee>) {
+    return this.employeeRepository.find(options);
   }
 
   async findOne(id: number): Promise<Employee> {

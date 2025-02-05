@@ -3,11 +3,11 @@ import { ReportsService } from './reports.service';
 import { CreateReportDto } from './dto/create-report.dto';
 import { UpdateReportDto } from './dto/update-report.dto';
 
-@Controller('reports')
+@Controller('report')
 export class ReportsController {
-  constructor(private readonly reportsService: ReportsService) {}
+  constructor(private readonly reportsService: ReportsService) { }
 
-  @Post('/report')
+  @Post('')
   create(@Body() createReportDto: CreateReportDto) {
     return this.reportsService.create(createReportDto);
   }
@@ -30,5 +30,10 @@ export class ReportsController {
   @Delete(':id')
   remove(@Param('id') id: string) {
     return this.reportsService.remove(+id);
+  }
+
+  @Get('squad/:squadId')
+  findBySquad(@Param('squadId') squadId: string) {
+    return this.reportsService.findBySquad(+squadId);
   }
 }

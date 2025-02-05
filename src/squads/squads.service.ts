@@ -64,15 +64,19 @@ export class SquadsService {
     return await this.squadRepository.find();
   }
 
-  async findOne(id: number): Promise<Squad> {
-    const squad = await this.squadRepository.findOne({ where: { id } });
-
+  async findOne(id: number, options?: { relations: string[] }): Promise<Squad> {
+    const squad = await this.squadRepository.findOne({
+      where: { id },
+      relations: options?.relations, 
+    });
+  
     if (!squad) {
       throw new NotFoundException(`Squad with id ${id} not found`);
     }
-
+  
     return squad;
   }
+  
 
   async update(id: number, updateSquadDto: UpdateSquadDto): Promise<Squad> {
     const squad = await this.findOne(id);

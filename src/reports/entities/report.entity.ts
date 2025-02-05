@@ -1,7 +1,8 @@
-import { Employee } from "src/employees/entities/employee.entity";
-import { Column, CreateDateColumn, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
+import { Employee } from '../../employees/entities/employee.entity';
+import { Squad } from '../../squads/entities/squad.entity';
+import { Column, CreateDateColumn, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
 
-@Entity()
+@Entity('reports')
 export class Report {
   @PrimaryGeneratedColumn()
   id: number;
@@ -9,11 +10,15 @@ export class Report {
   @Column()
   description: string;
 
-  @ManyToOne(() => Employee, (employee) => employee.id)
-  @JoinColumn()
+  @ManyToOne(() => Employee, (employee) => employee.reports)
+  @JoinColumn({ name: 'employeeId' })
   employee: Employee;
 
-  @Column({ type: 'int' })
+  @ManyToOne(() => Squad, (squad) => squad.reports)
+  @JoinColumn({ name: 'squadId' })
+  squad: Squad;
+
+  @Column({ type: 'int', name: 'spent_hours', default: 0 })
   spentHours: number;
 
   @CreateDateColumn()

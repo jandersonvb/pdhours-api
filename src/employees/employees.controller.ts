@@ -14,7 +14,7 @@ export class EmployeesController {
 
   @Get()
   findAll() {
-    return this.employeesService.findAll();
+    return this.employeesService.findAll({ relations: ['squad'] });
   }
 
   @Get(':id')

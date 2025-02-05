@@ -1,4 +1,6 @@
-import { Employee } from 'src/employees/entities/employee.entity';
+import { Employee } from '../../employees/entities/employee.entity';
+import { Report } from '../../reports/entities/report.entity';
+
 import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, UpdateDateColumn, OneToMany } from 'typeorm';
 
 @Entity('squads')
@@ -9,11 +11,11 @@ export class Squad {
   @Column()
   name: string;
 
-  @Column({ nullable: true })
-  description: string;
-
   @OneToMany(() => Employee, (employee) => employee.squad)
   employees: Employee[];
+
+  @OneToMany(() => Report, (report) => report.squad)
+  reports: Report[];
 
   @CreateDateColumn()
   createdAt: Date;
