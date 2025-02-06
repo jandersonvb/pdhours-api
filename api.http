@@ -1,6 +1,8 @@
 ### Testar conexão com o servidor
 GET http://localhost:3000/
 
+
+### EMPLOYEE
 ### Criar um funcionário
 POST http://localhost:3000/employee
 Content-Type: application/json
@@ -28,13 +30,18 @@ PUT http://localhost:3000/employee/1
 ### Deletar um funcionário
 DELETE http://localhost:3000/employee/1
 
+
+
+
+
+
+### SQUAD
 ### Criar um squad
 POST http://localhost:3000/squad
 Content-Type: application/json
 
 {
-  "name": "Squad 3",
-  "description": "Squad 3 description"
+  "name": "Backe-end"
 }
 
 ### Listar todos os squads
@@ -51,19 +58,41 @@ PUT http://localhost:3000/squad/1
 }
 
 ### Deletar um squad
-DELETE http://localhost:3000/squad/14
+DELETE http://localhost:3000/squad/2
 
 
-###  Reportar horas trabalhadas
-
+### REPORT
+### Criar um report
 POST http://localhost:3000/report
 Content-Type: application/json
+
+{
+  "employeeId": 1,
+  "description": "Tela de SIGNUP",
+  "spentHours": 8
+}
+
+### Listar todos os reports
+GET http://localhost:3000/report
+
+### Listar um report
+GET http://localhost:3000/report/1
+
+### Atualizar um report
+PUT http://localhost:3000/report/1
 
 {
   "employeeId": 1,
   "description": "Trabalho de backend",
   "spentHours": 8
 }
+
+### Deletar um report
+DELETE http://localhost:3000/report/1
+
+```
+
+
 
 ### Listar horas trabalhadas
 GET http://localhost:3000/squad/5/report
@@ -73,9 +102,7 @@ GET http://localhost:3000/squad/2/report?employeeId=1
 
 
 
-###  Listar horas trabalhadas
 
-GET http://localhost:3000/report/1
 
 ###  Listar horas trabalhadas por período
 GET http://localhost:3000/report/1?startDate=2021-09-01&endDate=2021-09-30

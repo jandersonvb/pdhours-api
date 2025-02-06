@@ -22,6 +22,7 @@ export class SquadsController {
   async getAverageHours(@Param() params: Pick<SquadReportDto, 'squadId'>, @Query() query: Omit<SquadReportDto, 'squadId'>): Promise<number> {
     return await this.squadsService.getAverageHours(params.squadId, query.startDate, query.endDate);
   }
+  
   @Post()
   create(@Body() createSquadDto: CreateSquadDto) {
     return this.squadsService.create(createSquadDto);
