@@ -1,3 +1,9 @@
+@baseUrl = http://localhost:3000
+@squadId = 3
+@startDate = 2025-02-06
+@endDate = 2025-02-06
+
+
 ### Testar conexão com o servidor
 GET http://localhost:3000/
 
@@ -48,7 +54,7 @@ Content-Type: application/json
 GET http://localhost:3000/squad
 
 ### Listar um squad
-GET http://localhost:3000/squad/1
+GET http://localhost:3000/squad/3
 
 ### Atualizar um squad
 PUT http://localhost:3000/squad/1
@@ -67,8 +73,8 @@ POST http://localhost:3000/report
 Content-Type: application/json
 
 {
-  "employeeId": 1,
-  "description": "Tela de SIGNUP",
+  "employeeId": 2,
+  "description": "Tela de Cadastro do sistema",
   "spentHours": 8
 }
 
@@ -102,18 +108,14 @@ GET http://localhost:3000/squad/2/report?employeeId=1
 
 
 
+### GetHoursByMember
+GET {{baseUrl}}/squad/{{squadId}}/hours-by-member?startDate={{startDate}}&endDate={{endDate}}
+Accept: application/json
 
+### GetTotalHours
+GET {{baseUrl}}/squad/{{squadId}}/total-hours?startDate={{startDate}}&endDate={{endDate}}
+Accept: application/json
 
-###  Listar horas trabalhadas por período
-GET http://localhost:3000/report/1?startDate=2021-09-01&endDate=2021-09-30
-
-
-### Listar horas trabalhadas por período
-GET http://localhost:3000/report/1?startDate=2021-09-01&endDate=2021-09-30
-
-
-```
-
-
-
-
+### GetAverageHours
+GET {{baseUrl}}/squad/{{squadId}}/average-hours?startDate={{startDate}}&endDate={{endDate}}
+Accept: application/json

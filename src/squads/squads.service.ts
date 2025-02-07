@@ -21,18 +21,18 @@ export class SquadsService {
 
   async getHoursByMember(squadId: number, startDate: string, endDate: string): Promise<any[]> {
     const reports = await this.reportRepository
-      .createQueryBuilder('report') //Cria uma query builder
-      .leftJoinAndSelect('report.employee', 'employee') // Junta a tabela de reports com a tabela de employees
-      .where('employee.squadId = :squadId', { squadId }) //Onde o funcionário pertence ao squad
-      .andWhere('report.createdAt BETWEEN :startDate AND :endDate', { startDate, endDate }) //E a data do report está entre o intervalo
-      .select('employee.name', 'name') //Seleciona o nome do funcionário
-      .addSelect('SUM(report.spentHours)', 'totalHours')//Seleciona a soma das horas gastas
-      .groupBy('employee.id') //Agrupa por funcionário
-      .getRawMany(); //Retorna um array de objetos
+      .createQueryBuilder('report')
+      .leftJoinAndSelect('report.employee', 'employee')
+      .where('employee.squadId = :squadId', { squadId })
+      .andWhere('DATE(report.createdAt) BETWEEN :startDate AND :endDate', { startDate, endDate })
+      .select('employee.name', 'name')
+      .addSelect('SUM(report.spentHours)', 'totalHours')
+      .groupBy('employee.id')
+      .getRawMany();
       
-    return reports; //Retorna o array de objetos
+    return reports;
   }
-
+  
   async getTotalHours(squadId: number, startDate: string, endDate: string): Promise<number> {
     const totalHours = await this.reportRepository
       .createQueryBuilder('report')

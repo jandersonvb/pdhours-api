@@ -2,25 +2,36 @@ import { Controller, Get, Post, Body, Patch, Param, Delete, Query } from '@nestj
 import { SquadsService } from './squads.service';
 import { CreateSquadDto } from './dto/create-squad.dto';
 import { UpdateSquadDto } from './dto/update-squad.dto';
-import { SquadReportDto } from './dto/squad-report.dto';
 
 @Controller('/squad')
 export class SquadsController {
   constructor(private readonly squadsService: SquadsService) { }
 
-  @Get('/:id/hours-by-member')
-  async getHoursByMember(@Param() params: Pick<SquadReportDto, 'squadId'>, @Query() query: Omit<SquadReportDto, 'squadId'>): Promise<any[]> {
-    return await this.squadsService.getHoursByMember(params.squadId, query.startDate, query.endDate);
+  @Get(':id/hours-by-member')
+  async getHoursByMember(
+    @Param('id') id: number,
+    @Query('startDate') startDate: string,
+    @Query('endDate') endDate: string,
+  ) {
+    return this.squadsService.getHoursByMember(id, startDate, endDate);
   }
-
-  @Get('/:id/total-hours')
-  async getTotalHours(@Param() params: Pick<SquadReportDto, 'squadId'>, @Query() query: Omit<SquadReportDto, 'squadId'>): Promise<number> {
-    return await this.squadsService.getTotalHours(params.squadId, query.startDate, query.endDate);
+  
+  @Get(':id/total-hours')
+  async getTotalHours(
+    @Param('id') id: number,
+    @Query('startDate') startDate: string,
+    @Query('endDate') endDate: string,
+  ) {
+    return this.squadsService.getTotalHours(id, startDate, endDate);
   }
-
-  @Get('/:id/average-hours')
-  async getAverageHours(@Param() params: Pick<SquadReportDto, 'squadId'>, @Query() query: Omit<SquadReportDto, 'squadId'>): Promise<number> {
-    return await this.squadsService.getAverageHours(params.squadId, query.startDate, query.endDate);
+  
+  @Get(':id/average-hours')
+  async getAverageHours(
+    @Param('id') id: number,
+    @Query('startDate') startDate: string,
+    @Query('endDate') endDate: string,
+  ) {
+    return this.squadsService.getAverageHours(id, startDate, endDate);
   }
   
   @Post()
